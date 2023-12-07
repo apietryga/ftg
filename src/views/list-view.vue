@@ -24,8 +24,12 @@
           </td>
           <td>{{ `${user.first_name} ${user.last_name}` }}</td>
           <td>
-            <v-icon icon="pencil" />
-            <v-icon icon="delete" />
+            <router-link :to="'/edit/' +  user.id">
+              <i class="mdi mdi-pencil"></i>
+            </router-link>
+            <button @click="deleteUser(user.id)">
+              <v-icon icon="delete" />
+            </button>
           </td>
         </tr>
       </tbody>
@@ -34,8 +38,9 @@
 
     <nav>
       <ul>
-        <template v-for="page in pagination.total_pages" :key="'page_' + page">
-          <li @click="fetchList(page)" :class="{ active: page == pagination.page}">
+        {{ pagination }}
+        <template v-for="page in pagination?.total_pages" :key="'page_' + page">
+          <li @click="getList(page)" :class="{ active: page == pagination.page}">
             {{ page }}
           </li>
         </template>
@@ -49,12 +54,12 @@
 
   import { ref } from 'vue'
   import { useFetch } from '../composables/useFetch'
-  import vIcon from '@/components/v-icon.vue';
+  import vIcon from '@/components/v-icon.vue'
 
   const users = ref()
   const pagination = ref()
 
-  async function fetchList(get_page:number = 1): Promise<void> {
+  async function getList(get_page:number = 1): Promise<void> {
 
     const { data, page, total_pages } = await useFetch().get('users?page=' + get_page)
 
@@ -63,6 +68,13 @@
 
   }
 
-  fetchList()
+  async function deleteUser(id:number){
+
+    const result = await useFetch()._delete('users/' + id)
+    console.log(result)
+
+  }
+
+  getList()
 
 </script>
