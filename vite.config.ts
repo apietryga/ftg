@@ -15,6 +15,6 @@ export default defineConfig({
   },
   base: '/ftg/',
   build: {
-    outDir: 'ftg',
+    outDir: 'docs',
   }
 })
