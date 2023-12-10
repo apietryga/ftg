@@ -33,11 +33,11 @@ export function useFetch(){
 
   }
 
-  async function post(url: string, data: Object = null){
+  async function post(url: string, data: Object|null = null){
     let response
     
     try {
-      response = await axios.patch(api_url + url, data)
+      response = await axios.post(api_url + url, data)
     } catch (e) {
       throw new Error(parseError(e))
     }
@@ -46,7 +46,7 @@ export function useFetch(){
 
   }
 
-  async function patch(url: string, data: Object = null){
+  async function patch(url: string, data: Object|null = null){
     let response
     
     try {
