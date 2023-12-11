@@ -88,7 +88,7 @@
 
   async function getList(get_page:number = 1): Promise<void> {
 
-    const { data, page, total_pages } = await useFetch().get('users?page=' + get_page)
+    const { data: { data, page, total_pages } } = await useFetch().get('users?page=' + get_page)
 
     users.value = data
     filteredUsers.value = data

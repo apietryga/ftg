@@ -103,12 +103,13 @@
 
 <script setup lang="ts">
   
-  import { useRoute } from 'vue-router'
+  import { useRoute, useRouter } from 'vue-router'
   import { ref } from 'vue'
   import { useFetch } from '../composables/useFetch'
   import vIcon from '@/components/v-icon.vue'
   
   const { name, params: { id } } = useRoute()
+  const router = useRouter()
   const newPhotoURL = ref()
 
   const photoEditor = ref({
@@ -124,7 +125,7 @@
 
   async function getUser(id:any): Promise<void> {
 
-    const { data } = await useFetch().get('users/' +id)
+    const { data: { data } } = await useFetch().get('users/' +id)
 
     Object.assign(user.value, data)
 
@@ -132,15 +133,23 @@
 
   async function updateUser(){
 
-    const result = await useFetch().patch('users/' + id, user.value)
-    console.log(result)
+    const { status } = await useFetch().patch('users/' + id, user.value)
+    if(status === 200){
+      return router.back()
+    }
+
+    // throw error
 
   }
 
   async function addNewUser(){
 
-    const result = await useFetch().post('users', user.value)
-    console.log(result)
+    const { status } = await useFetch().post('users', user.value)
+    if(status === 201){
+      return router.back()
+    }
+
+    // throw error
 
   }
 
