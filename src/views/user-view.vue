@@ -37,9 +37,14 @@
             <button v-if="name == 'edit'" @click.prevent="updateUser()" class="cta">
               Update Details
             </button>
+
             <button v-else @click.prevent="addNewUser()" class="cta">
               Add new user
             </button>
+            
+            <router-link to="/" class="cta danger">
+              Cancel
+            </router-link>
 
           </div>
   
@@ -48,14 +53,43 @@
         <div class="card wrapper-avatar">
   
           <picture class="avatar">
-            <img v-if="user.avatar != ''" :src="user.avatar" :alt="`${user.first_name} ${user.last_name} profile photo`">
+            <img 
+              :src="user.avatar != '' ? user.avatar : '/ftg/images/default-avatar.webp'"
+              :alt="(user.avatar != '' ? `${user.first_name} ${user.last_name}` : 'User') + ' profile photo'"
+            >
           </picture>
   
           <div class="actions">
-            <button class="cta outline">
+            
+            <button class="cta outline" v-if="!photoEditor.progress" 
+              @click.prevent="() => {
+                photoEditor.progress = true
+                photoEditor.url = user.avatar
+              }">
               <v-icon icon="camera" />
-              Change Photo
+              <span>Change Photo</span>
             </button>
+
+            <div class='wrapper-photo-editing' v-else>
+
+              <input type="text" v-model="photoEditor.url" 
+                ref="newPhotoURL" @click="newPhotoURL.select()" class="border" >
+
+              <div class="cta" 
+                @click.prevent="() => {
+                  photoEditor.progress = false
+                  user.avatar = photoEditor.url
+                }">
+                Save
+              </div>
+
+              <div class="cta danger" 
+                @click.prevent="photoEditor.progress = false">
+                Cancel
+              </div>
+
+            </div>
+
           </div>
   
         </div>
@@ -75,6 +109,12 @@
   import vIcon from '@/components/v-icon.vue'
   
   const { name, params: { id } } = useRoute()
+  const newPhotoURL = ref()
+
+  const photoEditor = ref({
+    progress: false,
+    url: '',
+  })
 
   const user = ref({
     first_name: '',
@@ -146,6 +186,11 @@
                 width:100%;
               }
             }
+            &-actions {
+              display: flex;
+              align-items: stretch;
+              gap:.5rem;
+            }
           }
         }
         &-avatar {
@@ -168,6 +213,12 @@
           }
           .actions {
             width: 100%;
+            .wrapper-photo-editing{
+              // border:2px dashed red;
+              display:flex;
+              align-items: center;
+              gap:5px;
+            }
             .cta {
               width: 100%;
               justify-content: center;
