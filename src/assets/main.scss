@@ -1,0 +1,68 @@
+@import './base.css';
+
+
+body{
+
+  font-family: 'Open Sans', sans-serif;
+
+  #app {
+    
+    border:2px dashed red;
+    margin: 0 auto;
+    padding: 2rem;
+
+    .card {
+
+      background: var(--color-background-light);
+      box-shadow: 0 0 3px var(--color-shadow);
+      border-radius:2px;
+      padding: 1.5rem 1rem;
+      margin: 1.5rem 0;
+
+      &-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+    }
+    
+    .search{
+      background-color: var(--color-background-soft);
+      border-radius: 2px;
+
+      &-field{
+        display:flex;
+        align-items: center;
+
+        input[type="text"]{
+          background-color: transparent;
+          border:0;
+          outline: none;
+          font-family: inherit;
+          padding:5px 10px;
+        }
+
+      }
+
+      &-icon{
+        padding:5px 10px 0 5px;
+        cursor:pointer;
+      }
+
+    }
+
+  }
+
+}
+
+
+
+// @media (min-width: 1024px) {
+
+//   body {
+//     display: flex;
+//     place-items: center;
+//   }
+
+// }

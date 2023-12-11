@@ -1,6 +1,7 @@
 :root {
   --color-background: #F5F7F9;
-  --color-background-soft: #F7F9FA;
+  --color-background-light: #FEFEFE;
+  --color-background-soft: #F7F9F9;
   --color-background-mute: #F6F8FA;
 
   --color-text: #101519;
@@ -9,6 +10,7 @@
   --color-success: #459571;
 
   --color-button: #AEB5BC;
+  --color-shadow: #F1F3F5;
 }
 
 *,

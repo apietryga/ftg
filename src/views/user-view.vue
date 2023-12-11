@@ -27,10 +27,10 @@
         </div>
 
         <!-- <router-link to="/">Update Details</router-link> -->
-        <button v-if="name == 'edit'" @click="updateUser()">
+        <button v-if="name == 'edit'" @click.prevent="updateUser()">
           Update Details
         </button>
-        <button v-else @click="addNewUser()">
+        <button v-else @click.prevent="addNewUser()">
           Add new user
         </button>
 
@@ -75,7 +75,7 @@
 
   async function updateUser(){
 
-    const result = await useFetch().patch('users/' + id)
+    const result = await useFetch().patch('users/' + id, user.value)
     console.log(result)
 
   }

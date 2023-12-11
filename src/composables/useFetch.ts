@@ -46,16 +46,21 @@ export function useFetch(){
 
   }
 
-  async function patch(url: string, data: Object|null = null){
+  async function patch(url: string, data: Object = {}){
+
     let response
     
     try {
+
       response = await axios.patch(api_url + url, data)
+
     } catch (e) {
+
       throw new Error(parseError(e))
+
     }
 
-    return response.data
+    return response?.data
 
   }
 
