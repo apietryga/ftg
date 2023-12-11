@@ -145,13 +145,33 @@ body {
 
 }
 
+@media (max-width: 768px) {
+  #app {
 
+    padding: 1rem !important;
 
-// @media (min-width: 1024px) {
+    .card-title{
+      flex-direction: column-reverse;
+      gap:1rem;
+      align-items: flex-end !important;
+    }
 
-//   body {
-//     display: flex;
-//     place-items: center;
-//   }
+    .edit-wrapper form {
 
-// }
+      flex-direction: column-reverse; 
+
+      .form-wrapper {
+        flex-direction: column;
+        gap:2rem !important;
+      }
+
+      .wrapper-photo-editing {
+        flex-direction: column;
+        input {
+          width:100%;
+        }
+      }
+
+    }
+  }
+}

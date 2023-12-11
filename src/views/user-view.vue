@@ -185,6 +185,7 @@
             &-wrapper {
               display:flex;
               gap:0 1rem;
+              margin-bottom: 3rem;
             }
             &-field {
               flex:1;
