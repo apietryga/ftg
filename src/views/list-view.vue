@@ -98,8 +98,12 @@
 
   async function deleteUser(id:number): Promise<void> {
 
-    const result = await useFetch()._delete('users/' + id)
-    console.log(result)
+    const { status } = await useFetch()._delete('users/' + id)
+
+    if(status === 204){
+      users.value = users.value.filter((user: any) => user.id !== id)
+      filteredUsers.value = users.value
+    }
 
   }
 

@@ -1,7 +1,7 @@
 <template>
   <nav class="pagination">
     <ul>
-      <li class="static prev" :class="{ disabled: pagination?.page == 1}" @click="changePage(-1)">
+      <li class="static prev" :class="{ disabled: pagination?.page == 1}" @click="emit('changePage', pagination?.page - 1 )">
         <v-icon icon="chevron-double-left" />
       </li>
       <template v-for="page in pagination?.total_pages" :key="'page_' + page">
@@ -9,7 +9,8 @@
           {{ page }}
         </li>
       </template>
-      <li class="static next" :class="{ disabled: pagination?.page == pagination?.total_pages }" @click="changePage(1)">
+      <li class="static next" :class="{ disabled: pagination?.page == pagination?.total_pages }" 
+        @click="emit('changePage', pagination?.page + 1 )">
         <v-icon icon="chevron-double-right" />
       </li>
     </ul>
@@ -23,12 +24,6 @@
 
   const { pagination } = defineProps(['pagination'])
   const emit = defineEmits(['changePage'])
-
-  function changePage(changingBy: number): void {
-    let page = pagination?.page || 0
-    page += changingBy
-    emit('changePage', page)
-  }
 
 </script>
 
@@ -51,6 +46,7 @@
       &.active {
         background-color: var(--color-success);
         color: var(--color-text-light);
+        pointer-events: none;
       }
       &.static {
         &.disabled {

@@ -3,7 +3,6 @@ import axios from "axios"
 export function useFetch(){
 
   const api_url: string = 'https://reqres.in/api/'
-  // const api_url: string = 'https://corsproxy.io/?' + encodeURIComponent('https://reqres.in/api/');
 
   function parseError(e:any){
     
@@ -74,7 +73,7 @@ export function useFetch(){
       throw new Error(parseError(e))
     }
 
-    return response.data
+    return response
 
   }
 
