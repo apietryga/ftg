@@ -21,41 +21,50 @@
 
         </div>
 
-        <router-link to="/new">Add User</router-link>
+        <router-link to="/new" class="cta">
+          <v-icon icon="plus"/>
+          <span>Add User</span>
+        </router-link>
 
       </div>
   
-      <table>
-        
-        <thead>
-          <tr>
-            <th></th>
-            <th>Full Name</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        
-        <tbody>
-          <tr v-for="(user, index) in filteredUsers" :key="'user_' + index">
-            <td>
-              <picture>
-                <img :src="user.avatar" 
-                     :alt="`${user.first_name} ${user.last_name} profile photo`">
-              </picture>
-            </td>
-            <td>{{ `${user.first_name} ${user.last_name}` }}</td>
-            <td>
-              <router-link :to="'/edit/' +  user.id">
-                <i class="mdi mdi-pencil"></i>
-              </router-link>
-              <button @click="deleteUser(user.id)">
-                <v-icon icon="delete" />
-              </button>
-            </td>
-          </tr>
-        </tbody>
-  
-      </table>
+      <div class="card-body">
+
+        <table class="table">
+          
+          <thead>
+            <tr>
+              <th></th>
+              <th class="th-name">Full Name</th>
+              <th class="th-actions">Action</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <tr v-for="(user, index) in filteredUsers" :key="'user_' + index">
+              <td class="td-avatar">
+                <picture>
+                  <img :src="user.avatar" 
+                       :alt="`${user.first_name} ${user.last_name} profile photo`">
+                </picture>
+              </td>
+              <td>
+                {{ `${user.first_name} ${user.last_name}` }}
+              </td>
+              <td class="td-actions actions">
+                <router-link :to="'/edit/' +  user.id">
+                  <i class="mdi mdi-pencil"></i>
+                </router-link>
+                <a @click="deleteUser(user.id)">
+                  <v-icon icon="delete" />
+                </a>
+              </td>
+            </tr>
+          </tbody>
+    
+        </table>
+
+      </div>
 
     </div>
 
@@ -104,9 +113,9 @@
 
   function searchUser(): boolean {
 
-    const phrase = search_phrase.value.toLowerCase()
+    const phrase = search_phrase.value?.toLowerCase()
 
-    if(phrase === ''){
+    if(!phrase || phrase === ''){
       return filteredUsers.value = users.value
     }
 
@@ -140,3 +149,32 @@
   getList()
 
 </script>
+
+<style lang="scss">
+
+  .table {
+    .th-name{
+      width:80%;
+      text-align: left;
+    }
+    .th-actions {
+      width:20%;
+    }
+    .td-avatar {
+      picture{
+        width:3rem;
+        height:3rem;
+        display:flex;
+        img{
+          max-width: 100%;
+          max-height: 100%;
+          border-radius:50%;
+        }
+      }
+    }
+    .td-actions {
+      text-align: center;
+    }
+  }
+
+</style>

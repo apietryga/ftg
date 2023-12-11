@@ -1,13 +1,13 @@
 @import './base.css';
+@import './animations.css';
 
 
-body{
+body {
 
   font-family: 'Open Sans', sans-serif;
 
   #app {
-    
-    border:2px dashed red;
+
     margin: 0 auto;
     padding: 2rem;
 
@@ -16,38 +16,97 @@ body{
       background: var(--color-background-light);
       box-shadow: 0 0 3px var(--color-shadow);
       border-radius:2px;
-      padding: 1.5rem 1rem;
       margin: 1.5rem 0;
+      padding: 1.5rem 1rem;
 
       &-title {
+        align-items: center;
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        margin-bottom:1.5rem;
       }
 
     }
     
-    .search{
+    .search {
       background-color: var(--color-background-soft);
-      border-radius: 2px;
+      border-radius: 5px;
 
-      &-field{
-        display:flex;
+      &-field {
         align-items: center;
+        display:flex;
 
-        input[type="text"]{
+        input[type="text"] {
           background-color: transparent;
           border:0;
-          outline: none;
           font-family: inherit;
+          outline: none;
           padding:5px 10px;
         }
 
       }
 
-      &-icon{
-        padding:5px 10px 0 5px;
+      &-icon {
         cursor:pointer;
+        padding:5px 10px 0 5px;
+      }
+
+    }
+
+    .cta {
+
+      background-color: var(--color-success);
+      border-radius: 3rem;
+      box-shadow: 0 2px 2px var(--color-success-shadow);
+      color:var(--color-text-light);
+      display:flex;
+      font-size:.8rem;
+      font-weight: bold;
+      gap:.5rem;
+      padding:.5rem 1.5rem;
+      text-decoration: none;
+      transform: scale(1);
+
+      &:hover{
+      	animation: pulse 2s infinite;
+      }
+
+    }
+
+    .table {
+
+      border-collapse: collapse;
+      width:100%;
+      border-top: 2px var(--color-background-soft) solid;
+
+      thead th {
+        font-weight: 900;
+        padding:.5rem;
+      }
+
+      tbody {
+
+        tr {
+          .actions{
+            a {
+              cursor: pointer;
+              color:var(--color-button);
+              margin: 0 .25rem;
+              text-decoration: none;
+              transition: .5s;
+              &:hover{
+                color:var(--color-text);
+              }
+            }
+          }
+          td {
+            padding:.5rem;
+          }
+          &:nth-child(odd){
+            background-color:var(--color-background-mute);
+          }
+        }
+
       }
 
     }

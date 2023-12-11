@@ -5,12 +5,15 @@
   --color-background-mute: #F6F8FA;
 
   --color-text: #101519;
-  --color-text: #101519;
+  --color-text-light: #FFFFFF;
 
-  --color-success: #459571;
+  --color-success: #459671;
 
-  --color-button: #AEB5BC;
+  --color-button: #AEB4BC;
+
   --color-shadow: #F1F3F5;
+  --color-success-shadow: #9ABCAA;
+
 }
 
 *,
