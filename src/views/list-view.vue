@@ -68,16 +68,7 @@
 
     </div>
 
-    <nav>
-      <ul>
-        {{ pagination }}
-        <template v-for="page in pagination?.total_pages" :key="'page_' + page">
-          <li @click="getList(page)" :class="{ active: page == pagination.page}">
-            {{ page }}
-          </li>
-        </template>
-      </ul>
-    </nav>
+    <v-pagination :pagination="pagination" @changePage="getList" />
 
   </div>
 </template>
@@ -87,6 +78,7 @@
   import { ref } from 'vue'
   import { useFetch } from '../composables/useFetch'
   import vIcon from '@/components/v-icon.vue'
+  import vPagination from '@/components/v-pagination.vue'
 
   const search_phrase = ref()
   const users = ref()
@@ -150,7 +142,7 @@
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
   .table {
     .th-name{

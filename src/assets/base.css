@@ -1,5 +1,6 @@
 :root {
-  --color-background: #F5F7F9;
+  /* --color-background: #F5F7F9; */
+  --color-background: #F6F8F9;
   --color-background-light: #FEFEFE;
   --color-background-soft: #F7F9F9;
   --color-background-mute: #F6F8FA;
@@ -10,6 +11,8 @@
   --color-success: #459671;
 
   --color-button: #AEB4BC;
+  
+  --color-border: #E7E9ED;
 
   --color-shadow: #F1F3F5;
   --color-success-shadow: #9ABCAA;
