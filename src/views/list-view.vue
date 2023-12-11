@@ -21,7 +21,7 @@
 
         </div>
 
-        <router-link to="/new" class="cta">
+        <router-link to="/new" class="cta radius shadow">
           <v-icon icon="plus"/>
           <span>Add User</span>
         </router-link>
